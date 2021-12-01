@@ -46,19 +46,19 @@ create_edge(g, "a", "c")
 create_edge(g, "b", "d")
 create_edge(g, "d", "e")
 create_edge(g, "c", "e")
+
+
 # for i in range(0, nbEdges):
 #     print("Edge from src to destination ")
 #     source = input("Edge source: ")
 #     destination = input("Edge destination: ")
 #     print(type(source), type(destination),)
 #     create_edge(g, source, destination)
-
-
+# 
 
 K=execute(g, ["a"])
 print("known", K)
 
 nx.draw(g, with_labels=True)
 plt.show()
-# if __name__ == '_main_':
-#     print("hi_all")
+
