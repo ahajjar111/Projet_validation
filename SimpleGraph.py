@@ -13,8 +13,7 @@ class SimpleGraph(TransitionRelation):
     def next(self, c):
         try:
             return self.g[c]
-        except:
-            KeyError:
+        except KeyError:
             return[]
 
 class NFA(SimpleGraph, AcceptingSet):
@@ -23,5 +22,6 @@ class NFA(SimpleGraph, AcceptingSet):
         self.accepting = acc
 
     def is_accepting (self,c):
-        return c in self.accepting or return True
+        if c in self.accepting:
+            return True
         
