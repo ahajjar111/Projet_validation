@@ -1,4 +1,5 @@
-from Kernel import TransitionRelation
+from _typeshed import Self
+from Kernel import AcceptingSet, TransitionRelation
 
 
 class SimpleGraph(TransitionRelation):
@@ -15,3 +16,12 @@ class SimpleGraph(TransitionRelation):
         except:
             KeyError:
             return[]
+
+class NFA(SimpleGraph, AcceptingSet):
+    def __init__(self, g, iniS, acc):
+        super().__init__(g, iniS)
+        self.accepting = acc
+
+    def is_accepting (self,c):
+        return c in self.accepting or return True
+        
