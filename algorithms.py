@@ -1,4 +1,4 @@
-def is_safe_bfs(g):
+def find_accepting_bfs(g):
     known = [] #set()
     frontier = [] #depue()
     at_start = True
