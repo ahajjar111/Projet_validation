@@ -22,6 +22,6 @@ class NFA(SimpleGraph, AcceptingSet):
         self.accepting = acc
 
     def is_accepting (self,c):
-        if c in self.accepting:
-            return True
-        
+        return c in self.accepting
+        # if c in self.accepting:
+        #     return True
