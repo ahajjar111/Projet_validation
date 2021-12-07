@@ -105,3 +105,15 @@ def tohIterative(num_of_disks, src, aux, dest):
 
         elif (i % 3 == 0):
             moveDisksBetweenTwoPoles(aux, dest, a, d)
+
+
+# Input: number of disks
+num_of_disks = 4
+
+# Create three stacks of size 'num_of_disks'
+# to hold the disks
+src = createStack(num_of_disks)
+dest = createStack(num_of_disks)
+tmp = createStack(num_of_disks)
+
+tohIterative(num_of_disks, src, tmp, dest)
