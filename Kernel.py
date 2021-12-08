@@ -41,10 +41,10 @@ class semanticTransitionRelations:
         pass
 
 class BehSoupSemantics(semanticTransitionRelations):
-    def __init__(program):
+    def __init__(self, program):
         self.soup = program
     def initial(self):
-        return [soup.initial]
+        return [self.soup.initial]
 
     def actions(self, conf):
         return list(map(lambda beh : beh.action,
@@ -56,7 +56,7 @@ class BehSoupSemantics(semanticTransitionRelations):
         r = a(target)
         return target
 
-class STRTR:
+class STR2TR:
     def __init__(self, str):
         self.operand = str
 
