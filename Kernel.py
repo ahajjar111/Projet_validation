@@ -69,3 +69,12 @@ class STRTR:
             target = self.operand.execute(c,a)
             targets.append(target)
         return targets
+
+
+class isAcceptingProxy(identifyProxy):
+    def __init__(self, operand, predicate):
+        super().__init__(operand)
+        self.predicate = predicate
+    
+    def is_accepting(self, c):
+        return self.predicate(c)
