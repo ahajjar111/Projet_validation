@@ -1,3 +1,4 @@
+from _typeshed import Self
 import sys
 
 
@@ -105,6 +106,45 @@ def tohIterative(num_of_disks, src, aux, dest):
 
         elif (i % 3 == 0):
             moveDisksBetweenTwoPoles(aux, dest, a, d)
+
+
+# predicate model checker(semantique, predicate)
+
+def guarde_def(s,t):
+    return lambda c: len(c.stacks[s]) and len(c.stacks[t])==0 or c.stacks[s][-1] < c.stacks[t][-1]
+
+def action_def(s,t):
+    def action(c):
+        disk = c.stacks[s].pop()
+        c.stacks[t].append(dist)
+        return action
+
+def hanoi_soup(nb_stacks, nb_disks):
+    i_conf = HanoiConfiguration(nb_stacks, nb_stacks) # c'est un classe HanoiConfiguration
+    programSrc = BehaviourSoup(i_conf)
+    for i in range(nb_stacks):
+        for j in range(nb_stacks):
+            programSrc.add(f'{i}-{j}', guarde_def(i,j), action_def(i,j))
+    return programSrc
+
+def is_accepting(c):
+    ........
+
+
+class BehaviourSoup:
+    def __init__(conf):
+        self.initial = conf
+        self.behaviours = []
+        
+    def add(n, g, a):
+        Self.behaviours.append(Behaviour(n,g,a))
+
+
+class Behaviour:
+    def __init__(name, g, a):
+        self.name = name
+        self.action = a
+        self.guard = g
 
 
 # Input: number of disks
