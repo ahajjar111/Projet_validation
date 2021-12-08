@@ -130,7 +130,7 @@ def hanoi_soup(nb_stacks, nb_disks):
 def is_accepting(c):
     ........
 
-
+# soup et soup behaviour doivent etre dans un fichier soup language
 class BehaviourSoup:
     def __init__(conf):
         self.initial = conf
