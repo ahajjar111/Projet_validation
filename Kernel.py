@@ -41,6 +41,8 @@ class semanticTransitionRelations:
         pass
 
 class BehSoupSemantics(semanticTransitionRelations):
+    def __init__(program):
+        self.soup = program
     def initial(self):
         return [soup.initial]
 
@@ -53,3 +55,17 @@ class BehSoupSemantics(semanticTransitionRelations):
         target = copy.deepcopy(c)
         r = a(target)
         return target
+
+class STRTR:
+    def __init__(self, str):
+        self.operand = str
+
+    def initial(self):
+        return self.operand.initial()
+    
+    def next(self, c):
+        targets = []
+        for a in self.operand.actions(c):
+            target = self.operand.execute(c,a)
+            targets.append(target)
+        return targets
