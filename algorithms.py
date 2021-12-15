@@ -16,4 +16,5 @@ def find_accepting_bfs(g):
                 frontier.append(n)
     return False,n
 
-    #test
+def predicate_model_checker(semantics, predicate):
+    return True
