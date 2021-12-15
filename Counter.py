@@ -10,6 +10,9 @@ class CounterConfig:
         return hash(self.pc)
     def __eq__(self, other):
         return self.pc==other.pc
+    
+    def __repr__(self) -> str:
+        return str(self.pc)
 
 
 def counter(max):
