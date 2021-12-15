@@ -14,8 +14,15 @@ class identifyProxy:
     def __init__(self, operand):
         self.operand = operand
 
-    def __getattribute__(self,attr):
-        return getattr(self.operand, attr)
+    # def __getattribute__(self,attr):
+    #     return getattr(self.operand, attr)
+
+    def initial(self):
+        return self.operand.initial()
+    
+    def next(self, c):
+        return self.operand.next(c)
+    
 
 class ParentStoreProxy(identifyProxy):
     def __init__(self, operand):
