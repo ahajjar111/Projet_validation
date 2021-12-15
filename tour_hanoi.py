@@ -108,6 +108,12 @@ def tohIterative(num_of_disks, src, aux, dest):
             moveDisksBetweenTwoPoles(aux, dest, a, d)
 
 
+nb_stacks = 3
+tour_hanoi = []
+for i in range(nb_stacks):
+    tour_hanoi.append(pil)
+    
+
 # predicate model checker(semantique, predicate)
 
 def guarde_def(s,t):
@@ -129,23 +135,6 @@ def hanoi_soup(nb_stacks, nb_disks):
 
 def is_accepting(c):
     ........
-
-# soup et soup behaviour doivent etre dans un fichier soup language
-class BehaviourSoup:
-    def __init__(conf):
-        self.initial = conf
-        self.behaviours = []
-        
-    def add(n, g, a):
-        Self.behaviours.append(Behaviour(n,g,a))
-
-
-class Behaviour:
-    def __init__(name, g, a):
-        self.name = name
-        self.action = a
-        self.guard = g
-
 
 # Input: number of disks
 num_of_disks = 4
