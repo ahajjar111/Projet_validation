@@ -1,3 +1,4 @@
+import copy
 class TransitionRelation:
 
     def __init__(self):
@@ -7,7 +8,7 @@ class TransitionRelation:
         pass
 
 class AcceptingSet:
-    def is_accepting(c):
+    def is_accepting(self,c):
         pass
 
 class identifyProxy:
