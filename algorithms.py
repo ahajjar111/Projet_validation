@@ -1,7 +1,11 @@
+from Kernel import STR2TR, isAcceptingProxy
+
 def find_accepting_bfs(g):
-    known = [] #set()
+
+    known = dict() 
     frontier = [] #depue()
     at_start = True
+
     while frontier or at_start:
         if at_start:
             neighbours = g.initial()
@@ -9,12 +13,13 @@ def find_accepting_bfs(g):
         else: g.next(frontier.pop(0))
 
         for n in neighbours:
-            if g.is_accepting(n):
-                return True,n
             if n not in known:
-                known.append(n)
+                if g.is_accepting(n):
+                    return True,n
+                known[n] = n
                 frontier.append(n)
     return False,n
 
 def predicate_model_checker(semantics, predicate):
+
     return True
