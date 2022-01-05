@@ -1,4 +1,4 @@
-from Kernel import STR2TR, isAcceptingProxy
+from Kernel import STR2TR, isAcceptingProxy, ParentStoreProxy
 
 def find_accepting_bfs(g):
 
@@ -21,5 +21,10 @@ def find_accepting_bfs(g):
     return False,n
 
 def predicate_model_checker(semantics, predicate):
+    tr = STR2TR(semantics)
 
-    return True
+    tr = isAcceptingProxy(tr, predicate)
+
+    tr = ParentStoreProxy(tr)
+    r = find_accepting_bfs(tr)
+
