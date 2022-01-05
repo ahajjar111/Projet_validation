@@ -1,6 +1,6 @@
 from Kernel import STR2TR, isAcceptingProxy
 from SoupLanguage import BehaviourSoup, BehSoupSemantics
-from algorithms import predicate_model_checker
+from Algorithms import predicate_model_checker
 
 
 class CounterConfig:
