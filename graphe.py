@@ -1,17 +1,16 @@
-
 import networkx as nx
 import matplotlib.pyplot as plt
 import string
 
 
-def execute( R, start):
+def execute(R, start):
     K = []
     F = []
     i = True
-    while len(F)>0 or i:
+    while len(F) > 0 or i:
         N = []
         if not i:
-            N = R [(F.pop(0)) ]
+            N = R[(F.pop(0))]
         else:
             N.extend(start)
             i = False
@@ -20,6 +19,7 @@ def execute( R, start):
                 K.append(n)
                 F.append(n)
     return K
+
 
 def create_node(graph, nom, identifiant, donnee):
     graph.add_node(nom, id=identifiant, data=donnee)
@@ -47,7 +47,6 @@ create_edge(g, "b", "d")
 create_edge(g, "d", "e")
 create_edge(g, "c", "e")
 
-
 # for i in range(0, nbEdges):
 #     print("Edge from src to destination ")
 #     source = input("Edge source: ")
@@ -56,9 +55,8 @@ create_edge(g, "c", "e")
 #     create_edge(g, source, destination)
 # 
 
-K=execute(g, ["a"])
+K = execute(g, ["a"])
 print("known", K)
 
 nx.draw(g, with_labels=True)
 plt.show()
-

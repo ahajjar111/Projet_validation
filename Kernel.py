@@ -1,4 +1,6 @@
 import copy
+
+
 class TransitionRelation:
 
     def __init__(self):
@@ -7,9 +9,11 @@ class TransitionRelation:
     def next(self, c):
         pass
 
+
 class AcceptingSet:
-    def is_accepting(self,c):
+    def is_accepting(self, c):
         pass
+
 
 class identifyProxy:
     def __init__(self, operand):
@@ -20,22 +24,22 @@ class identifyProxy:
 
     def initial(self):
         return self.operand.initial()
-    
+
     def next(self, c):
         return self.operand.next(c)
-    
+
 
 class ParentStoreProxy(identifyProxy):
     def __init__(self, operand):
         super().__init__(operand)
         self.parent = {}
-    
+
     def next(self, conf):
         ns = self.operand.next(conf)
 
         for n in ns:
             if n not in self.parent:
-                self.parent[n]=conf,None
+                self.parent[n] = conf, None
         return ns
 
 
@@ -43,7 +47,7 @@ class semanticTransitionRelations:
     def __init__(self):
         pass
 
-    def initial (self):
+    def initial(self):
         pass
 
     def actions(self, conf):
@@ -52,17 +56,18 @@ class semanticTransitionRelations:
     def execute(self, conf, actions):
         pass
 
+
 class STR2TR:
     def __init__(self, str):
         self.operand = str
 
     def initial(self):
         return self.operand.initial()
-    
+
     def next(self, c):
         targets = []
         for a in self.operand.actions(c):
-            target = self.operand.execute(c,a)
+            target = self.operand.execute(c, a)
             targets.append(target)
         return targets
 
@@ -71,6 +76,6 @@ class isAcceptingProxy(identifyProxy):
     def __init__(self, operand, predicate):
         super().__init__(operand)
         self.predicate = predicate
-    
+
     def is_accepting(self, c):
         return self.predicate(c)

@@ -1,8 +1,8 @@
 from itertools import count
 import networkx as nx
 import matplotlib.pyplot as plt
-from networkx.classes.function import nodes
-from networkx.generators.classic import null_graph
+import networkx.classes.function
+import networkx.generators.classic
 from Algorithms import *
 from SimpleGraph import *
 from Kernel import *
