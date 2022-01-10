@@ -15,8 +15,8 @@ class identifyProxy:
     def __init__(self, operand):
         self.operand = operand
 
-    # def __getattribute__(self,attr):
-    #     return getattr(self.operand, attr)
+    def __getattr__(self, attr):
+        return getattr(self.operand, attr)
 
     def initial(self):
         return self.operand.initial()
@@ -32,6 +32,7 @@ class ParentStoreProxy(identifyProxy):
     
     def next(self, conf):
         ns = self.operand.next(conf)
+
         for n in ns:
             if n not in self.parents:
                 self.parents[n]=conf,None
@@ -40,6 +41,9 @@ class ParentStoreProxy(identifyProxy):
 
 class semanticTransitionRelations:
     def __init__(self):
+        pass
+
+    def initial (self):
         pass
 
     def actions(self, conf):
