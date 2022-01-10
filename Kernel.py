@@ -35,7 +35,7 @@ class ParentStoreProxy(identifyProxy):
 
         for n in ns:
             if n not in self.parents:
-                self.parents[n]=conf,None
+                self.parent[n]=conf,None
         return ns
 
 
