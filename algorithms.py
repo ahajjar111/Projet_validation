@@ -47,4 +47,19 @@ def predicate_model_checker(semantics, predicate):
 
     tr = ParentStoreProxy(tr)
     r = find_accepting_bfs(tr)
+    get_trace(tr.parent, r, tr.initial())
 
+def get_trace(parents, result, initial):
+    status,target = result
+    if not status :
+        print("L'accepting state n'est pas trouvé ")
+        return None
+    print (initial,result)
+
+    current_Node = target
+    trace = [current_Node]
+    while current_Node not in initial:
+        current_Node = parents[current_Node]
+        trace.append(current_Node)
+
+    print("Trace : ", trace)
