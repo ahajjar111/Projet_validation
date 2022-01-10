@@ -52,22 +52,6 @@ class semanticTransitionRelations:
     def execute(self, conf, actions):
         pass
 
-class BehSoupSemantics(semanticTransitionRelations):
-    def __init__(self, program):
-        self.soup = program
-    def initial(self):
-        return [self.soup.initial]
-
-    def actions(self, conf):
-        return list(map(lambda beh : beh.action,
-                         filter(lambda beh: beh.guard(conf),
-                         self.soup.behaviours)))
-
-    def execute(self, c, a):
-        target = copy.deepcopy(c)
-        r = a(target)
-        return target
-
 class STR2TR:
     def __init__(self, str):
         self.operand = str

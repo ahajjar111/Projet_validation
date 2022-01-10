@@ -1,5 +1,5 @@
 from _typeshed import Self
-from Kernel import AcceptingSet, TransitionRelation
+from Kernel import *
 
 
 class SimpleGraph(TransitionRelation):
