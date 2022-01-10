@@ -34,7 +34,7 @@ class ParentStoreProxy(identifyProxy):
         ns = self.operand.next(conf)
 
         for n in ns:
-            if n not in self.parents:
+            if n not in self.parent:
                 self.parent[n]=conf,None
         return ns
 
