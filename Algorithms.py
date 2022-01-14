@@ -3,15 +3,7 @@ from Kernel import STR2TR, isAcceptingProxy, ParentStoreProxy
 
 def bfs(graph):
     known = set()  # Known
-<<<<<<< HEAD
-<<<<<<< HEAD
     frontier = []  # Frontier #list_des_noeuds
-=======
-    frontier = []  # Deque()  Frontier #list_des_noeuds
->>>>>>> 95d2431edf26e6edcf8eb8b862e993814a838085
-=======
-    frontier = []  # Deque()  Frontier #list_des_noeuds
->>>>>>> 95d2431edf26e6edcf8eb8b862e993814a838085
     at_start = True  # init
 
     while frontier or at_start:
