@@ -62,13 +62,3 @@ def Alice_Bob():
 
     return soup
 
-
-if __name__ == "__main__":
-
-    semantics = BehSoupSemantics(Alice_Bob())
-    print("Test de deadlock: ", end=" ")
-
-    predicate_model_checker(semantics, lambda c: len(semantics.actions(c)) == 0)
-    print("Test de la section critique: ", end=" ")
-
-    predicate_model_checker(semantics, lambda c: c.apc == 2 and c.bpc == 2)
