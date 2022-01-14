@@ -1,8 +1,5 @@
-from Kernel import *
 from SoupLanguage import *
 from Algorithms import *
-
-# import inspect
 
 
 class Alice_Bob_Conf:
@@ -20,8 +17,7 @@ class Alice_Bob_Conf:
     def __repr__(self):
         return str(self.apc) + str(self.bpc)
 
-
-def Alice_Bob(maxi):
+def Alice_Bob():
     
     soup = BehaviourSoup(Alice_Bob_Conf())
 
@@ -45,32 +41,5 @@ def Alice_Bob(maxi):
 
     soup.add("bToInit", lambda c: c.bpc == 1, bToInit)
 
-
-    #def Alice_BobToSc(c):
-    #    c.apc = 1
-    #    c.bpc = 1
-
-    #soup.add("Alice_BobToSc", lambda c: c.apc + c.bpc == maxi, Alice_BobToSc)
-
     return soup
 
-
-if __name__ == "__main__":
-    semantics = BehSoupSemantics(Alice_Bob(2))
-    # print(semantics.initial())
-    # print(semantics.actions(semantics.initial()[0]))
-
-    # for action in semantics.actions(semantics.initial()[0]):
-    #     print(inspect.getsource(action))
-
-    # print(inspect.getsource(semantics.actions(semantics.initial()[0]) ))
-
-    r = bfs(STR2TR(semantics))
-    print("Etats: ", r) 
-
-    predicate_model_checker(semantics, lambda c: c.bpc == 0)
-
-    print("Test de deadlock: ", end=" ")
-    predicate_model_checker(semantics, lambda c: len(semantics.actions(c)) == 0 )
-    print("Test de la section critique: ", end=" ")
-    predicate_model_checker(semantics, lambda c: c.apc == 1 and c.bpc == 1 )

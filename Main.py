@@ -1,11 +1,16 @@
-import matplotlib.pyplot as plt
 import networkx as nx
-
-from Counter import *
+import matplotlib.pyplot as plt
+from networkx.classes.function import nodes
+from networkx.generators.classic import null_graph
+from Algorithms import *
 from SimpleGraph import *
+from Counter import *
 from SoupLanguage import *
+from Alice_Bob import *
+from tour_hanoi import *
+from ALice_Bob_V1 import *
 
-if __name__ == "__main__":
+def main_networkx():
 
     G = nx.DiGraph()
 
@@ -86,3 +91,136 @@ if __name__ == "__main__":
     semantics = BehSoupSemantics(counter(3))
     predicate_model_checker(semantics, lambda c: c.pc == 2)
     predicate_model_checker(semantics, lambda c: c.pc > 50)
+
+def main_hanoi_1():
+    # Input: number of disks
+    num_of_disks = 4
+
+    # Create three stacks of size 'num_of_disks'
+    # to hold the disks
+    src = createStack(num_of_disks)
+    dest = createStack(num_of_disks)
+    aux = createStack(num_of_disks)
+
+    tohIterative(num_of_disks, src, aux, dest)
+
+def main_hanoi_2():
+    print("-------------------------")
+    print("Guarde / Action")
+    print("Example 1: ")
+    hanoi_tower = ParentStore_Proxy(Hanoi(3,3))
+    for i, j in [(0, 1), (0, 2), (2, 1)]:
+        init = hanoi_tower.initial()[0]
+        guarde = guarde_def(i, j)
+        action = action_def(i, j)
+        g = guarde(init)
+        if g:
+            a = action(init)
+        print(f'{i},{j} : {"Vrai" if g else "Faux"} -> {init}')
+
+    print("Example 2: ")
+    init = hanoi_tower.initial()[0]
+    for i, j in [(0, 2), (0, 1), (2, 1), (0, 2), (1, 0), (1, 2), (0, 2)]:
+        guard = guarde_def(i, j)
+        action = action_def(i, j)
+        g = guard(init)
+        if g:
+            a = action(init)
+        print(f'{i},{j} : {"Vrai" if g else "Faux"} -> {init}')
+
+    print("-------------------------")
+    print("Soup")
+    soup = hanoi_soap(3, 3)
+    Behavior_Soup = BehSoupSemantics(soup)
+    init = Behavior_Soup.initial()[0]
+    print("First State: ", init)
+    actions = Behavior_Soup.actions(init)
+
+    if actions:
+        print("Possible action : ", inspect.getsource(action))
+        for action in actions:
+            execute = Behavior_Soup.execute(init, action)
+            print("Execution output : ", execute)
+
+    print("-------------------------")
+
+    print("STR2TR")
+    str = STR2TR(Behavior_Soup)
+    init = str.initial()[0]
+    next = str.next(init)
+    print("States after ", init, "are", next)
+
+    print("-------------------------")
+
+
+def main_counter():
+    semantics = BehSoupSemantics(counter(3))
+    print(semantics.initial())
+    print(semantics.actions(semantics.initial()[0]))
+
+    tr = STR2TR(semantics)
+    tr = isAcceptingProxy(tr, lambda c: c.pc == 2)
+    print(tr.initial())
+
+    r = bfs(STR2TR(semantics))
+    print(r)
+
+    predicate_model_checker(semantics, lambda c: c.pc == 2)
+    predicate_model_checker(semantics, lambda c: c.pc > 50)
+
+
+def main_alice_bob():
+
+    semantics = BehSoupSemantics(Alice_Bob())
+
+    r = bfs(STR2TR(semantics))
+    print("Etats: ", r)
+
+    predicate_model_checker(semantics, lambda c: c.bpc == 0)
+
+    print("Test de deadlock: ", end=" ")
+    predicate_model_checker(semantics, lambda c: len(semantics.actions(c)) == 0)
+
+    print("Test de la section critique: ", end=" ")
+    predicate_model_checker(semantics, lambda c: c.apc == 1 and c.bpc == 1)
+
+def main_alice_bob_v1():
+    semantics = BehSoupSemantics(Alice_Bob())
+    print(semantics.initial())
+
+    # r = bfs(STR2TR(semantics))
+    # print("States: ", r)
+
+    predicate_model_checker(semantics, lambda c: c.bob_pc == 0)
+
+    print("Test de deadlock: ", end=" ")
+
+    predicate_model_checker(semantics, lambda c: len(semantics.actions(c)) == 0)
+    print("Test de la section critique: ", end=" ")
+
+    predicate_model_checker(semantics, lambda c: c.apc == 2 and c.bpc == 2)
+
+
+if __name__ == "__main__":
+    print("Liste des mains")
+    print("a: Graph")
+    print("b: Counter")
+    print("c: AliceBob")
+    print("d: AliceBob V1")
+    print("e: Hanoi V1")
+    print("f: Hanoi V2")
+
+    option = input("Quel est votre choix? ")
+
+    if option == 'a':
+        main_networkx()
+    elif option == 'b':
+        main_counter()
+    elif option == 'c':
+        main_alice_bob()
+    elif option == 'd':
+        main_alice_bob_v1()
+    elif option == 'e':
+        main_hanoi_1()
+    elif option == 'f':
+        main_hanoi_2()

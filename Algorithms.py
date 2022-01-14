@@ -1,10 +1,13 @@
 from Kernel import STR2TR, isAcceptingProxy, ParentStoreProxy
-from typing import Deque
 
 
 def bfs(graph):
     known = set()  # Known
-    frontier = Deque()  # Frontier #list_des_noeuds
+<<<<<<< HEAD
+    frontier = []  # Frontier #list_des_noeuds
+=======
+    frontier = []  # Deque()  Frontier #list_des_noeuds
+>>>>>>> 95d2431edf26e6edcf8eb8b862e993814a838085
     at_start = True  # init
 
     while frontier or at_start:

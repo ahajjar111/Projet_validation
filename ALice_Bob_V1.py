@@ -2,8 +2,6 @@ from SoupLanguage import *
 from Algorithms import *
 
 
-# import inspect
-
 class Alice_Bob_Conf:
 
     def __init__(self):
@@ -44,6 +42,7 @@ def Alice_Bob():
     soup.add("aToInit", lambda c: c.apc == 2, aToInit)
 
     def bToSc(c):
+
         c.bpc = 2
         c.DrapeauBob = 1
 
@@ -65,21 +64,11 @@ def Alice_Bob():
 
 
 if __name__ == "__main__":
+
     semantics = BehSoupSemantics(Alice_Bob())
-    # print(semantics.initial())
-    # print(semantics.actions(semantics.initial()[0]))
-
-    # for action in semantics.actions(semantics.initial()[0]):
-    #     print(inspect.getsource(action))
-
-    # print(inspect.getsource(semantics.actions(semantics.initial()[0]) ))
-
-    # r = bfs(STR2TR(semantics))
-    # print("Etats: ", r)
-
-    # predicate_model_checker(semantics, lambda c: c.bpc == 0)
-
     print("Test de deadlock: ", end=" ")
+
     predicate_model_checker(semantics, lambda c: len(semantics.actions(c)) == 0)
     print("Test de la section critique: ", end=" ")
+
     predicate_model_checker(semantics, lambda c: c.apc == 2 and c.bpc == 2)
