@@ -1,12 +1,8 @@
-from itertools import count
-import networkx as nx
 import matplotlib.pyplot as plt
-import networkx.classes.function
-import networkx.generators.classic
-from Algorithms import *
-from SimpleGraph import *
-from Kernel import *
+import networkx as nx
+
 from Counter import *
+from SimpleGraph import *
 from SoupLanguage import *
 
 if __name__ == "__main__":

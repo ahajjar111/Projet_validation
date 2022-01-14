@@ -1,6 +1,6 @@
-import source
 from abc import ABC, abstractmethod
-from kernel import STR2TR
+
+import source
 
 
 class ostr(ABC):

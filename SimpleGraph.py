@@ -3,6 +3,7 @@ from Kernel import *
 
 class SimpleGraph(TransitionRelation):
     def __init__(self, g, iniS):
+        super().__init__()
         self.g = g
         self.iniS = iniS
 

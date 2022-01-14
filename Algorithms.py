@@ -1,9 +1,10 @@
 from Kernel import STR2TR, isAcceptingProxy, ParentStoreProxy
 from typing import Deque
 
+
 def bfs(g):
     known = set()
-    frontier = Deque() 
+    frontier = Deque()
     at_start = True  # init
 
     while frontier or at_start:
@@ -13,16 +14,16 @@ def bfs(g):
         else:
             neighbours = g.next(frontier.popleft())
         for n in neighbours:
-            
+
             if n not in known:
                 known.add(n)
                 frontier.append(n)
 
     return known
 
-def find_accepting_bfs(g):
 
-    known = dict() 
+def find_accepting_bfs(g):
+    known = dict()
     frontier = Deque()
     at_start = True
 
@@ -30,15 +31,17 @@ def find_accepting_bfs(g):
         if at_start:
             neighbours = g.initial()
             at_start = False
-        else: neighbours = g.next(frontier.popleft())
+        else:
+            neighbours = g.next(frontier.popleft())
 
         for n in neighbours:
             if n not in known:
                 if g.is_accepting(n):
-                    return True,n
+                    return True, n
                 known[n] = n
                 frontier.append(n)
-    return False,None
+    return False, None
+
 
 def is_bfs_reachable(g, start, end):
     known = set()
@@ -67,7 +70,7 @@ def is_bfs_safe(graph):
     known = set()
     frontier = Deque()
     at_start = True
-    
+
     while frontier or at_start:
         if at_start:
             neighbours = [graph.initial()]
@@ -75,7 +78,7 @@ def is_bfs_safe(graph):
         else:
             neighbours = graph.next(frontier.popleft())
         for n in neighbours:
-            
+
             if n not in known:
                 if graph.is_accepting(n):
                     return False
@@ -94,12 +97,13 @@ def predicate_model_checker(semantics, predicate):
     r = find_accepting_bfs(tr)
     get_trace(tr.parent, r, tr.initial())
 
+
 def get_trace(parents, result, initial):
-    status,target = result
-    if not status :
+    status, target = result
+    if not status:
         print("L'accepting state n'est pas trouvé ")
         return None
-    print (initial,result)
+    print(initial, result)
 
     current_Node = target
     trace = [current_Node]

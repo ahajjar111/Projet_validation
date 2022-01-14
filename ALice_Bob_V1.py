@@ -1,6 +1,6 @@
-from Kernel import *
 from SoupLanguage import *
 from Algorithms import *
+
 
 # import inspect
 
@@ -11,8 +11,9 @@ class Alice_Bob_Conf:
         self.bpc = 0
         self.DrapeauAlice = 0
         self.DrapeauBob = 0
+
     def __hash__(self):
-        return int(hash(self.apc + self.bpc)+hash(self.DrapeauAlice + self.DrapeauBob))
+        return int(hash(self.apc + self.bpc) + hash(self.DrapeauAlice + self.DrapeauBob))
 
     def __eq__(self, other):
         return self.apc == other.apc and self.bpc == other.bpc and self.DrapeauAlice == other.DrapeauAlice and self.DrapeauBob == other.DrapeauBob
@@ -27,27 +28,31 @@ def Alice_Bob():
     def aToWait(c):
         c.apc = 1
         c.DrapeauAlice = 1
+
     soup.add("aToWait", lambda c: c.apc == 0, aToWait)
 
     def aToSC(c):
         c.apc = 2
         c.DrapeauAlice = 1
 
-    soup.add("aToSC", lambda c: c.apc == 0 and c.bpc !=2,  aToSC)
+    soup.add("aToSC", lambda c: c.apc == 0 and c.bpc != 2, aToSC)
+
     def aToInit(c):
         c.apc = 0
-        c.DrapeauAlice=0
+        c.DrapeauAlice = 0
 
     soup.add("aToInit", lambda c: c.apc == 2, aToInit)
 
     def bToSc(c):
         c.bpc = 2
-        c.DrapeauBob= 1
+        c.DrapeauBob = 1
+
     soup.add("bToSc", lambda c: c.bpc == 0 and c.apc != 2, bToSc)
 
     def bToWait(c):
         c.bpc = 1
         c.DrapeauBob = 1
+
     soup.add("bToWait", lambda c: c.bpc == 0, bToWait)
 
     def bToInit(c):
@@ -72,7 +77,7 @@ if __name__ == "__main__":
     # r = bfs(STR2TR(semantics))
     # print("Etats: ", r)
 
-    #predicate_model_checker(semantics, lambda c: c.bpc == 0)
+    # predicate_model_checker(semantics, lambda c: c.bpc == 0)
 
     print("Test de deadlock: ", end=" ")
     predicate_model_checker(semantics, lambda c: len(semantics.actions(c)) == 0)

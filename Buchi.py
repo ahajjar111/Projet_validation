@@ -1,22 +1,24 @@
-class BuchiSemantics(iSTR):
-    initial(self):
-    set self.initial
-    actions(self, i, c):
-    actions= self.delta[c]
+from Kernel import semanticTransitionRelations
+
+
+class BuchiSemantics(semanticTransitionRelations):
+    def __init__(self, d):
+        super(BuchiSemantics).__init__()
+        self.delta = d
+
+    def initial(self):
+        return self.initial()
+
+    def actions(self,i,c):
+        actives = []
+        actions = self.delta[c]
         for a in actions:
             if a[0](i):
-                active.apprend(a)
+                actives.append(a)
         return actives
 
-__init(buchi)__
-    ini, d, pred
-    self.initial = ini
-    self.delta=dbmself.pred=pred
 
-
-
-execute(self,i,c,a)
-
-return[a]
+def execute(self, i, c, a):
+    return a[i]
 
 

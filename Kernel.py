@@ -1,6 +1,3 @@
-import copy
-
-
 class TransitionRelation:
 
     def __init__(self):
@@ -53,7 +50,7 @@ class semanticTransitionRelations:
     def actions(self, conf):
         pass
 
-    def execute(self, conf, actions):
+    def execute(self, conf, action):
         pass
 
 
