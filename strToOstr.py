@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-import source
-
 
 class ostr(ABC):
     @abstractmethod
@@ -14,14 +12,6 @@ class ostr(ABC):
     def actions(self, c):
         return self.operand.actions(c)
 
-    def execute(self, a):
+    def execute(self, c, source, a):
         target = self.operand.execute(c, a)
         return (source, a, target), target
-
-
-input(str)
-
-
-def actions(self, source):
-    sychronous_actions = []
-    kripte_src, buchi_src = source
