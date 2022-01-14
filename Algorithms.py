@@ -2,17 +2,17 @@ from Kernel import STR2TR, isAcceptingProxy, ParentStoreProxy
 from typing import Deque
 
 
-def bfs(g):
-    known = set()
-    frontier = Deque()
+def bfs(graph):
+    known = set()  # Known
+    frontier = Deque()  # Frontier #list_des_noeuds
     at_start = True  # init
 
     while frontier or at_start:
         if at_start:
-            neighbours = g.initial()
+            neighbours = graph.initial()
             at_start = False
         else:
-            neighbours = g.next(frontier.popleft())
+            neighbours = graph.next(frontier.popleft())
         for n in neighbours:
 
             if n not in known:
@@ -24,7 +24,7 @@ def bfs(g):
 
 def find_accepting_bfs(g):
     known = dict()
-    frontier = Deque()
+    frontier = []  # depue()
     at_start = True
 
     while frontier or at_start:
@@ -32,7 +32,7 @@ def find_accepting_bfs(g):
             neighbours = g.initial()
             at_start = False
         else:
-            neighbours = g.next(frontier.popleft())
+            g.next(frontier.pop(0))
 
         for n in neighbours:
             if n not in known:
@@ -40,52 +40,7 @@ def find_accepting_bfs(g):
                     return True, n
                 known[n] = n
                 frontier.append(n)
-    return False, None
-
-
-def is_bfs_reachable(g, start, end):
-    known = set()
-    frontier = Deque()
-    neighbours = [start]
-
-    for i in neighbours:
-        if i not in known:
-            known.add(i)
-            frontier.append(i)
-
-    while frontier:
-        neighbours = g.next(frontier.popleft())
-
-        for i in neighbours:
-            if i == end:
-                return True
-            if i not in known:
-                known.add(i)
-                frontier.append(i)
-
-    return False
-
-
-def is_bfs_safe(graph):
-    known = set()
-    frontier = Deque()
-    at_start = True
-
-    while frontier or at_start:
-        if at_start:
-            neighbours = [graph.initial()]
-            at_start = False
-        else:
-            neighbours = graph.next(frontier.popleft())
-        for n in neighbours:
-
-            if n not in known:
-                if graph.is_accepting(n):
-                    return False
-                known[n] = n
-                frontier.append(n)
-
-    return True
+    return False, n
 
 
 def predicate_model_checker(semantics, predicate):
