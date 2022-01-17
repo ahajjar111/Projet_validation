@@ -1,9 +1,8 @@
 import copy
 import sys
 
-# A stack representation
-from Kernel import AcceptingSet, TransitionRelation
-from SoupLanguage import BehaviourSoup
+from Kernel import *
+from SoupLanguage import *
 
 
 class Stack:

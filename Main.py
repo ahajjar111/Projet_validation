@@ -9,6 +9,7 @@ from SoupLanguage import *
 from Alice_Bob import *
 from tour_hanoi import *
 from ALice_Bob_V1 import *
+from Kernel import *
 
 def main_networkx():
 
@@ -107,10 +108,10 @@ def main_hanoi_1():
 def main_hanoi_2():
     print("-------------------------")
     print("Guarde / Action")
-    print("Example 1: ")
-    hanoi_tower = ParentStore_Proxy(Hanoi(3,3))
+    print("Exemple 1: ")
+    tour_hanoi = ParentStoreProxy(Hanoi(3,3))
     for i, j in [(0, 1), (0, 2), (2, 1)]:
-        init = hanoi_tower.initial()[0]
+        init = tour_hanoi.initial()[0]
         guarde = guarde_def(i, j)
         action = action_def(i, j)
         g = guarde(init)
@@ -119,7 +120,7 @@ def main_hanoi_2():
         print(f'{i},{j} : {"Vrai" if g else "Faux"} -> {init}')
 
     print("Example 2: ")
-    init = hanoi_tower.initial()[0]
+    init = tour_hanoi.initial()[0]
     for i, j in [(0, 2), (0, 1), (2, 1), (0, 2), (1, 0), (1, 2), (0, 2)]:
         guard = guarde_def(i, j)
         action = action_def(i, j)
@@ -130,7 +131,7 @@ def main_hanoi_2():
 
     print("-------------------------")
     print("Soup")
-    soup = hanoi_soap(3, 3)
+    soup = hanoi_soup(3, 3)
     Behavior_Soup = BehSoupSemantics(soup)
     init = Behavior_Soup.initial()[0]
     print("First State: ", init)
